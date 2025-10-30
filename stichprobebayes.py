@@ -55,8 +55,16 @@ if prior_type == "Uninformiert (Alle Fehlerzahlen gleich wahrscheinlich)":
     st.sidebar.info("Der uninformierte Prior gibt jeder möglichen Fehleranzahl von 0 bis N die exakt gleiche Startwahrscheinlichkeit.")
 else:
     st.sidebar.markdown("Modellieren Sie Ihr Vorwissen mit einer Beta-Binomial-Verteilung. Verändern Sie α und β, um die Form des Priors anzupassen.")
-    alpha_prior = st.sidebar.slider("Parameter α (alpha)", 0.1, 10.0, 1.0, 0.1, help="Höhere Werte zentrieren die Verteilung stärker.")
-    beta_prior = st.sidebar.slider("Parameter β (beta)", 1.0, 50.0, 25.0, 1.0, help="Höhere Werte machen die Verteilung schmaler und favorisieren wenige Fehler.")
+    alpha_prior = st.sidebar.slider(
+        "Parameter α (alpha)", 
+        min_value=0.1, max_value=100.0, value=1.0, step=0.1, 
+        help="Höhere Werte zentrieren die Verteilung stärker."
+    )
+    beta_prior = st.sidebar.slider(
+        "Parameter β (beta)", 
+        min_value=0.1, max_value=100.0, value=25.0, step=0.1, 
+        help="Höhere Werte machen die Verteilung schmaler und favorisieren wenige Fehler."
+    )
     prior = betabinom.pmf(possible_K, N_population, alpha_prior, beta_prior)
     # Sicherstellen, dass die Summe 1 ist
     prior /= np.sum(prior)
