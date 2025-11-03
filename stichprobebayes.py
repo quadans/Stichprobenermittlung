@@ -43,7 +43,7 @@ c_defects_found = st.sidebar.number_input(
 st.sidebar.subheader("2. Vorwissen (Prior)")
 prior_type = st.sidebar.selectbox(
     "Art des Priors wählen",
-    ["Uninformiert (Alle Fehlerzahlen gleich wahrscheinlich)", "Informiert (Wenige Fehler sind wahrscheinlicher)"]
+    ["Uninformiert (Alle Fehlerzahlen gleich wahrscheinlich)", "Informiert (Bestimmte Bereiche sind wahrscheinlicher)"]
 )
 
 # Mögliche Anzahl an Fehlern (Hypothesenraum K)
@@ -135,3 +135,4 @@ with col2:
     ax.set_xlim(left=0, right=max(upper_bound + 10, 30)) # Zoom auf den relevanten Bereich
     
     st.pyplot(fig)
+
